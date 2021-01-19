@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public float maxSpeed = 7;
+
+    Rigidbody2D rb2d;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb2d = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        HorizontalMovement();
+    }
+
+    private void HorizontalMovement()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb2d.velocity = new Vector2(maxSpeed, rb2d.velocity.y);
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
+        }
+
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        }
     }
 }
