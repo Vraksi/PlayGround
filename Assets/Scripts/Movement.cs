@@ -7,7 +7,8 @@ public class Movement : MonoBehaviour
 {
     private PlayerControls controls;
     private Vector2 move;
-    
+    bool isTrue = true;
+
     public float maxSpeed = 7;
 
     Rigidbody2D rb2d;
@@ -20,6 +21,7 @@ public class Movement : MonoBehaviour
         
         controls.GamePlay.Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.GamePlay.Movement.canceled += ctx => move = Vector2.zero;
+        controls.GamePlay.DebugLog.performed += ctx => SwitchSticks();
 
     }
 
@@ -27,6 +29,27 @@ public class Movement : MonoBehaviour
     void Update()
     {
         HorizontalMovement();
+    }
+
+    //To change controls and give buttons more stuff to do in the same scene.
+    private void SwitchSticks()
+    {
+        if (isTrue)
+        {
+            controls.GamePlay.Movement.Disable();
+            controls.GamePlay.Newmovement.Enable();
+            controls.GamePlay.Newmovement.performed += ctx => move = ctx.ReadValue<Vector2>();
+            controls.GamePlay.Newmovement.canceled += ctx => move = Vector2.zero;
+            isTrue = false;
+        }
+        else if (!isTrue)
+        {
+            controls.GamePlay.Newmovement.Disable();
+            controls.GamePlay.Movement.Enable();
+            controls.GamePlay.Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
+            controls.GamePlay.Movement.canceled += ctx => move = Vector2.zero;
+            isTrue = true;
+        }
     }
 
     private void HorizontalMovement()

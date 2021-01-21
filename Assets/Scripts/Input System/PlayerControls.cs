@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input System/PlayerControls.inputactions'
 
 using System;
 using System.Collections;
@@ -33,6 +33,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""New movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""1742b24d-3e49-4b97-8288-e69efc9abb4d"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -57,6 +65,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""DebugLog"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64ae48cc-4fff-49f1-8076-7c5f1ec1516c"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""New control scheme"",
+                    ""action"": ""New movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -72,6 +91,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -79,6 +109,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Movement = m_GamePlay.FindAction("Movement", throwIfNotFound: true);
         m_GamePlay_DebugLog = m_GamePlay.FindAction("DebugLog", throwIfNotFound: true);
+        m_GamePlay_Newmovement = m_GamePlay.FindAction("New movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -130,12 +161,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IGamePlayActions m_GamePlayActionsCallbackInterface;
     private readonly InputAction m_GamePlay_Movement;
     private readonly InputAction m_GamePlay_DebugLog;
+    private readonly InputAction m_GamePlay_Newmovement;
     public struct GamePlayActions
     {
         private @PlayerControls m_Wrapper;
         public GamePlayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_GamePlay_Movement;
         public InputAction @DebugLog => m_Wrapper.m_GamePlay_DebugLog;
+        public InputAction @Newmovement => m_Wrapper.m_GamePlay_Newmovement;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -151,6 +184,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @DebugLog.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDebugLog;
                 @DebugLog.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDebugLog;
                 @DebugLog.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDebugLog;
+                @Newmovement.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnNewmovement;
+                @Newmovement.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnNewmovement;
+                @Newmovement.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnNewmovement;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -161,6 +197,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @DebugLog.started += instance.OnDebugLog;
                 @DebugLog.performed += instance.OnDebugLog;
                 @DebugLog.canceled += instance.OnDebugLog;
+                @Newmovement.started += instance.OnNewmovement;
+                @Newmovement.performed += instance.OnNewmovement;
+                @Newmovement.canceled += instance.OnNewmovement;
             }
         }
     }
@@ -174,9 +213,19 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_NewcontrolschemeSchemeIndex];
         }
     }
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
     public interface IGamePlayActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnDebugLog(InputAction.CallbackContext context);
+        void OnNewmovement(InputAction.CallbackContext context);
     }
 }
