@@ -2,6 +2,7 @@
 
 Unity Tips for myself.
 
+
 Unity Input System
 #############################################################################
 
@@ -15,7 +16,6 @@ Du skal sætte en faktor for hvilke taster på hvis du gerne vil have tal værdi
 
 
 Unity code in general 
-
 #############################################################################
 
 [SeriealizedField] er til at du vil vise den I inspectoren men ikke vil gøre den public til andre klasser. 
