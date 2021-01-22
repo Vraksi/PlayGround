@@ -11,7 +11,7 @@ public class AdventureGame : MonoBehaviour
     [SerializeField] State startingState;
 
     TextActions controls;
-    float action;
+    //float action;
 
     State state;
 
@@ -19,7 +19,8 @@ public class AdventureGame : MonoBehaviour
     {
         controls = new TextActions();
 
-        controls.Moving.Action.performed += ctx => action = ctx.ReadValue<float>();
+        //controls.Moving.Action.performed += ctx => action = ctx.ReadValue<float>();
+        controls.Moving.Action.performed += ctx => ManageState(ctx.ReadValue<float>());
     }
 
     // Start is called before the first frame update
@@ -32,33 +33,42 @@ public class AdventureGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(action);
-
+        
         //ManageState();
     }
 
-    private void test()
+    private void ManageState(float action)
     {
-        Debug.Log("dwadadaw");
-    }
-
-    private void ManageState()
-    {
+        Debug.Log(action);
         var nextStates = state.GetStateStories();
-        if (action == 1)
+        //minus 1 for at få den korrekte plads i vores array.
+        action -= 1;
+        for (int i = 0; i < nextStates.Length; i++)
         {
-            state = nextStates[0];
-        }
-        else if (action == 2)
-        {
-            state = nextStates[1];
-        }
-        else if (action == 3)
-        {
-            state = nextStates[2];
+            if (action == i)
+            {
+                state = nextStates[i];
+            }
         }
         textComponent.text = state.GetStateStory();
-        action = 0;
+        /*
+                Debug.Log(action);
+                var nextStates = state.GetStateStories();
+                if (action == 1)
+                {
+                    state = nextStates[0];
+                }
+                else if (action == 2)
+                {
+                    state = nextStates[1];
+                }
+                else if (action == 3)
+                {
+                    state = nextStates[2];
+                }
+
+                action = 0;
+        */
     }
 
     private void OnEnable()

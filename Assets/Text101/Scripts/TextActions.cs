@@ -24,7 +24,7 @@ public class @TextActions : IInputActionCollection, IDisposable
                     ""id"": ""36d54a14-ab2b-47f1-a16e-ead77d3ddb89"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -44,7 +44,7 @@ public class @TextActions : IInputActionCollection, IDisposable
                     ""id"": ""15405bb0-5cde-4d71-8f68-9fa9e7695ecb"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Scale(factor=2)"",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Action"",
                     ""isComposite"": false,
@@ -55,7 +55,7 @@ public class @TextActions : IInputActionCollection, IDisposable
                     ""id"": ""4dad49af-a4d5-461e-9181-e3cc2b17d2cf"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Scale(factor=3)"",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Action"",
                     ""isComposite"": false,
