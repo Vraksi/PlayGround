@@ -1,0 +1,56 @@
+{
+    "name": "ui",
+    "maps": [
+        {
+            "name": "ui",
+            "id": "0c5b40e8-b470-48df-9b00-ed546959fde2",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "38d6a886-20c5-46ad-bfbd-ceea7b6fd3d0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "42beea72-cc7e-4107-9c7d-84ba22375d47",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d17fd192-44c9-4cf3-8310-f08ee8c26cfd",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
