@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/NumberWizard/Scenes/Start Menu.unity
-    guid: e92fcabdbbf10944882114ec97364a72
+    path: Assets/BlockBreaker/Scenes/Game Over.unity
+    guid: b46adefe6fbec1240940a338e50054e2
   - enabled: 1
-    path: Assets/NumberWizard/Scenes/Core Game.unity
-    guid: ef172f9357db7d1438becee5c2a752bd
+    path: Assets/BlockBreaker/Scenes/Level 1.unity
+    guid: 7d225993d0ea1b84d9d88a7f87af77a0
   - enabled: 1
-    path: Assets/NumberWizard/Scenes/Win Game.unity
-    guid: 910ed3d153fa4ae4790785c9962efc82
+    path: Assets/BlockBreaker/Scenes/Start Menu.unity
+    guid: 01f14948ebb78a94c856739811cae4b5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 823b54534709c23429f7139e32a05c74, type: 2}
