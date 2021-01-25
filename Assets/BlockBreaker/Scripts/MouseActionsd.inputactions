@@ -1,5 +1,5 @@
 {
-    "name": "MouseActions",
+    "name": "MouseActionsd",
     "maps": [
         {
             "name": "Mouse",
@@ -10,6 +10,14 @@
                     "type": "PassThrough",
                     "id": "02c162cf-2cd5-4b95-9b0c-bdedcd6fd21c",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseDown",
+                    "type": "PassThrough",
+                    "id": "9e92e124-1230-4ece-b716-463c58c20335",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -23,6 +31,17 @@
                     "processors": "",
                     "groups": "New control scheme",
                     "action": "MousePos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ac29776-e3df-4498-a943-78a1a33fe151",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "MouseDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

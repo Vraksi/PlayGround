@@ -5,8 +5,12 @@ using UnityEngine.InputSystem;
 
 public class Paddle : MonoBehaviour
 {
-    private MouseActionsd controls;
-    [SerializeField] GameObject paddleObj;
+    //Config parameters
+    public MouseActionsd controls;
+    [SerializeField] float screenWidthInUnits = 16f;
+    [SerializeField] float screenWidthMax = 16;
+    [SerializeField] float screenWidthMin = 0;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -23,9 +27,11 @@ public class Paddle : MonoBehaviour
 
     private void MousePos(Vector2 pos)
     {
-        //Debug.Log(pos.x / Screen.width * 16);
-        float mousePos = pos.x / Screen.width * 16;
+        //Debug.Log(pos.x / Screen.width * screenWidthInUnits);
+        float mousePos = pos.x / Screen.width * screenWidthInUnits;
         Vector2 paddlePos = new Vector2(mousePos, transform.position.y);
+        paddlePos.x = Mathf.Clamp(mousePos, screenWidthMin, screenWidthMax);
+
         transform.position = paddlePos;
         
     }
