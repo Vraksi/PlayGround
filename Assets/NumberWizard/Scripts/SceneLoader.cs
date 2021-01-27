@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    GameStatus gameStatus;
 
     public void LoadNextScene()
     {
@@ -13,12 +14,14 @@ public class SceneLoader : MonoBehaviour
     }
 
     public void LoadStartScene()
-    {        
+    {
+        FindObjectOfType<GameStatus>().GameOver();
         SceneManager.LoadScene(0);
     }
 
     public void QuitApplication()
     {
+        
         Application.Quit();
     }
 }
