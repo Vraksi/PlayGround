@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadStartScene()
     {
-        FindObjectOfType<GameStatus>().GameOver();       
+        FindObjectOfType<GameStatus>().GameOver();
         SceneManager.LoadScene(0);
     }
 
