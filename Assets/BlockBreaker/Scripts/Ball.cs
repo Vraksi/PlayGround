@@ -23,7 +23,7 @@ public class Ball : MonoBehaviour
     {
         //Tager fat i Control scheme igennem Paddle.cs 
         //men man kan (umiddelbart) også bare lave bruge new controls for at og så er der stadig kun en.
-        paddle1.controls.Mouse.MouseDown.performed += ctx => LaunchOnMouseClick();
+        //paddle1.controls.Mouse.MouseDown.performed += ctx => LaunchOnMouseClick();
     }
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,7 @@ public class Ball : MonoBehaviour
         transform.position = paddlePos + paddleToBallVector;
     }
 
-    private void LaunchOnMouseClick()
+    public void LaunchOnMouseClick()
     {
         if (!hasStarted)
         {
