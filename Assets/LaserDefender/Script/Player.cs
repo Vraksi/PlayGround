@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     //Config params
     [SerializeField] float moveSpeed;
     [SerializeField] float padding;
+    [SerializeField] GameObject laser;
 
     //Cached Reference
     private PlayerShipControls playerControls;
+    
 
     float xMin;
     float xMax;
@@ -21,7 +23,7 @@ public class Player : MonoBehaviour
     Vector2 direction;
 
     private void Awake()
-    {
+    {        
         playerControls = new PlayerShipControls();
         //LAMDBA BRUG DEM FOR STORED VALUES
         playerControls.Move.Horizontal.performed += ctx => direction.x = ctx.ReadValue<float>();
