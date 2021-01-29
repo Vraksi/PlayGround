@@ -33,6 +33,14 @@ public class @PlayerShipControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ab501a4b-9674-46e1-bbfe-4113ba83bf2c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -101,6 +109,17 @@ public class @PlayerShipControls : IInputActionCollection, IDisposable
                     ""action"": ""Vertical"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29c40dbd-fe66-4f19-ad37-bed02303709f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -123,6 +142,7 @@ public class @PlayerShipControls : IInputActionCollection, IDisposable
         m_Move = asset.FindActionMap("Move", throwIfNotFound: true);
         m_Move_Horizontal = m_Move.FindAction("Horizontal", throwIfNotFound: true);
         m_Move_Vertical = m_Move.FindAction("Vertical", throwIfNotFound: true);
+        m_Move_Fire = m_Move.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -174,12 +194,14 @@ public class @PlayerShipControls : IInputActionCollection, IDisposable
     private IMoveActions m_MoveActionsCallbackInterface;
     private readonly InputAction m_Move_Horizontal;
     private readonly InputAction m_Move_Vertical;
+    private readonly InputAction m_Move_Fire;
     public struct MoveActions
     {
         private @PlayerShipControls m_Wrapper;
         public MoveActions(@PlayerShipControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Horizontal => m_Wrapper.m_Move_Horizontal;
         public InputAction @Vertical => m_Wrapper.m_Move_Vertical;
+        public InputAction @Fire => m_Wrapper.m_Move_Fire;
         public InputActionMap Get() { return m_Wrapper.m_Move; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -195,6 +217,9 @@ public class @PlayerShipControls : IInputActionCollection, IDisposable
                 @Vertical.started -= m_Wrapper.m_MoveActionsCallbackInterface.OnVertical;
                 @Vertical.performed -= m_Wrapper.m_MoveActionsCallbackInterface.OnVertical;
                 @Vertical.canceled -= m_Wrapper.m_MoveActionsCallbackInterface.OnVertical;
+                @Fire.started -= m_Wrapper.m_MoveActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_MoveActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_MoveActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_MoveActionsCallbackInterface = instance;
             if (instance != null)
@@ -205,6 +230,9 @@ public class @PlayerShipControls : IInputActionCollection, IDisposable
                 @Vertical.started += instance.OnVertical;
                 @Vertical.performed += instance.OnVertical;
                 @Vertical.canceled += instance.OnVertical;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
         }
     }
@@ -222,5 +250,6 @@ public class @PlayerShipControls : IInputActionCollection, IDisposable
     {
         void OnHorizontal(InputAction.CallbackContext context);
         void OnVertical(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }
