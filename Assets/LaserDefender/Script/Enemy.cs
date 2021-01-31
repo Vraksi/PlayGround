@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
         if (collision.tag == "Projectile")
         {
             ProcessHit(collision, damageDealer);
@@ -55,7 +56,7 @@ public class Enemy : MonoBehaviour
     private void ProcessHit(Collider2D collision, DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
-        Destroy(collision.gameObject);
+        damageDealer.hit();
         if (health <= 0)
         {
             Destroy(gameObject);

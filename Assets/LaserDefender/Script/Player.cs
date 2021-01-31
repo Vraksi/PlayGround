@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
         if (collision.tag == "EnemyProjectile")
         {
             ProcessHit(collision, damageDealer);
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour
     private void ProcessHit(Collider2D collision, DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
-        Destroy(collision.gameObject);
+        damageDealer.hit();
         if (health <= 0)
         {
             Destroy(gameObject);
