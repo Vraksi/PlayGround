@@ -6,16 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/BlockBreaker/Scenes/Start Menu.unity
-    guid: 01f14948ebb78a94c856739811cae4b5
+    path: Assets/LaserDefender/Scenes/Start Menu.unity
+    guid: 9bed4d5303f95044fb8d0f9239e0bae1
   - enabled: 1
-    path: Assets/BlockBreaker/Scenes/Level 1.unity
-    guid: 7d225993d0ea1b84d9d88a7f87af77a0
+    path: Assets/LaserDefender/Scenes/Level 1.unity
+    guid: 9db789377bd6eb1429a110874ee8f649
   - enabled: 1
-    path: Assets/BlockBreaker/Scenes/Level 2.unity
-    guid: c67f30c0db984cb4db07e439edf9d732
-  - enabled: 1
-    path: Assets/BlockBreaker/Scenes/Game Over.unity
-    guid: b46adefe6fbec1240940a338e50054e2
+    path: Assets/LaserDefender/Scenes/Game Over.unity
+    guid: 726ce23b269756241bc75909f6ebc2f8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 823b54534709c23429f7139e32a05c74, type: 2}

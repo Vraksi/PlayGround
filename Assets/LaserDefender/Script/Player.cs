@@ -118,7 +118,15 @@ public class Player : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, soundVolume);
             Destroy(gameObject);
+            LoadGameOver();
         }
+    }
+
+    private void LoadGameOver()
+    {
+        LevelLaserDefender levelLaserDefender = FindObjectOfType<LevelLaserDefender>();
+        if (!levelLaserDefender) { Debug.LogError("VI KUNNE IKKE LOAD"); return; }
+        levelLaserDefender.LoadGameOverScene();
     }
 
     //Skal være med for Enable vores movement input control
