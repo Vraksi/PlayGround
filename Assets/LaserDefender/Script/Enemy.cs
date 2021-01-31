@@ -11,16 +11,29 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileFiringPeriod = 0.5f;
+    [SerializeField] GameObject deathVFX;
+    [SerializeField] float durationOfExplosion = 1f;
+
+
+    [Header("Sound/VFX")]
+    [Range(0f, 1f)] [SerializeField] float soundVolume = 1f;
+    [Range(0f, 1f)] [SerializeField] float laserVolume = 1f;
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip fireLaserSound;
+
+    private AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
     // Update is called once per frame
     void Update()
     {
+        audio.volume = laserVolume;
         CountDownAndShoot();
     }
 
@@ -35,6 +48,7 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
+        audio.PlayOneShot(fireLaserSound);
         GameObject laser = Instantiate(
             laserPrefab,
             transform.position,
@@ -59,7 +73,17 @@ public class Enemy : MonoBehaviour
         damageDealer.hit();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, soundVolume);
+        GameObject explosion = Instantiate(deathVFX, transform.position, transform.rotation);
+        Destroy(explosion, durationOfExplosion);
+    }
+
+
 }

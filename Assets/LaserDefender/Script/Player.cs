@@ -20,9 +20,14 @@ public class Player : MonoBehaviour
 
     Coroutine firingCoroutine;
 
+    [Header("Sound/VFX")]
+    [Range(0f, 1f)] [SerializeField] float soundVolume = 1f;
+    [Range(0f, 1f)] [SerializeField] float laserVolume = 1f;
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip fireLaserSound;
     //Cached Reference
     private PlayerShipControls playerControls;
-    
+    private AudioSource audio;
 
     float xMin;
     float xMax;
@@ -45,12 +50,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         SetupMoveBoundaries();
     }
 
     // Update is called once per frame
     void Update()
     {
+        audio.volume = laserVolume;
         Move();
         //Fire();
         
@@ -75,6 +82,7 @@ public class Player : MonoBehaviour
         //Hvis vi holder den er den true;
         while (true)
         {
+            audio.PlayOneShot(fireLaserSound);
             GameObject laser = Instantiate(
             laserPrefab,
             transform.position,
@@ -108,6 +116,7 @@ public class Player : MonoBehaviour
         damageDealer.hit();
         if (health <= 0)
         {
+            AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, soundVolume);
             Destroy(gameObject);
         }
     }
