@@ -124,6 +124,14 @@ public class Player : MonoBehaviour
 
     private void LoadGameOver()
     {
+        if (FindObjectOfType<LaserDefenderGameSession>())
+        {
+            FindObjectOfType<LaserDefenderGameSession>().ResetGame();
+        }
+        else
+        {
+            Debug.Log("Kunne ikke finde GameSession");
+        }
         LevelLaserDefender levelLaserDefender = FindObjectOfType<LevelLaserDefender>();
         if (!levelLaserDefender) { Debug.LogError("VI KUNNE IKKE LOAD"); return; }
         levelLaserDefender.LoadGameOverScene();

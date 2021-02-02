@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLaserDefender : MonoBehaviour
 {
+    [SerializeField] float timeBeforeLoad = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +31,13 @@ public class LevelLaserDefender : MonoBehaviour
 
     public void LoadGameOverScene()
     {
-        SceneManager.LoadScene("Game Over");
+        StartCoroutine(LoadGameOver());
     }
 
+    private IEnumerator LoadGameOver()
+    {
+        yield return new WaitForSeconds(timeBeforeLoad);
+        SceneManager.LoadScene("Game Over");
+    }
 
 }

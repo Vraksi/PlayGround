@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip fireLaserSound;
 
+    [SerializeField] int pointPerKill = 100;
+
     private AudioSource audio;
 
     // Start is called before the first frame update
@@ -78,7 +80,15 @@ public class Enemy : MonoBehaviour
     }
 
     private void Die()
-    {
+    {       
+        if (FindObjectOfType<LaserDefenderGameSession>())
+        {
+            FindObjectOfType<LaserDefenderGameSession>().AddToScore(pointPerKill);
+        }
+        else
+        {
+            Debug.Log("Kunne ikke finde GameSession");            
+        }
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, soundVolume);
         GameObject explosion = Instantiate(deathVFX, transform.position, transform.rotation);
